@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/my.js"></script>
+</head>
+<body>
+Day la Iphone:
+<div style="">
+    <input type="text" id="message">
+    <button id="send" onclick="sendMassage()">Gui</button>
+    <button id="inbox" onclick="readOutBox()">read outbox</button>
+    <ul id="list-message"></ul>
+    Pin: <div id="pin"></div>
+</div>
+
+<script>
+    function sendMassage() {
+        let message = document.getElementById('message').value;
+        samsung.writeMessage(message);
+        samsung.sendMessage(iphone);
+        console.log(samsung.getOutbox());
+        document.getElementById('message').value = '';
+        getPin();
+    }
+
+    function readOutBox() {
+        let html = '';
+        for (let i = 0; i < samsung.getOutbox().length; i++) {
+            html += '<li>';
+            html += samsung.getOutbox()[i];
+            html += '</li>';
+        }
+        console.log(html);
+        document.getElementById('list-message').innerHTML = html;
+    }
+
+    function getPin() {
+        document.getElementById('pin').innerHTML = samsung.getBattery();
+    }
+
+    getPin();
+</script>
+</body>
+</html>
